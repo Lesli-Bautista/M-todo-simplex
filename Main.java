@@ -6,7 +6,7 @@ class MetodoSimplex{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         byte opcion,n, restricciones, f, columnaPivote = 0, filaPivote=0;
-        double menorCociente, cociente, pivote,numMultiplicar;
+        double menorCociente, cociente, pivote,numMultiplicar,solucion;
         double [][] tablaSimplex;
         double[] coeficiente;
         boolean continuar= true;
@@ -147,18 +147,25 @@ class MetodoSimplex{
                     }
                     for(f = 0; f <= restricciones; f++){
                         if(f != filaPivote){
-                        numMultiplicar = tablaSimplex[f][columnaPivote];
-                        for(int i = 0; i <= n; i++){
-                            tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                            numMultiplicar = tablaSimplex[f][columnaPivote];
+                            for(int i = 0; i <= n; i++){
+                                tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                            }
                         }
                     }
+                    System.out.println("\nResultados finales: ");
+                    for(int i = 0; i < n; i++){
+                         System.out.println("X" + (i + 1) + " = " + tablaSimplex[i][n]);
+                    }
+
+                    solucion= tablaSimplex[restricciones][n];
+                    System.out.println("Z mínimo = " + solucion);
                 }
             }
-                }
-                case 3 ->{
-                }   
-        }while (opcion !=3);
+            case 3 ->{
 
+            }   
+        }while (opcion !=3);
     }
     
 }
