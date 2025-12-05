@@ -1,9 +1,6 @@
 import java.util.Scanner;
 class MetodoSimplex{
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         byte opcion,n, restricciones, f, columnaPivote = 0, filaPivote=0;
         double menorCociente, cociente, pivote,numMultiplicar,solucion;
@@ -52,12 +49,12 @@ class MetodoSimplex{
                         columnaPivote=0;
                         for (int columna = 0;columna<n;columna ++){
                             if (tablaSimplex[restricciones][columna] < tablaSimplex[restricciones][columnaPivote]) {
-                            columnaPivote=(byte)columna;
+                                columnaPivote=(byte)columna;
                             }
                         }
                         if(tablaSimplex[restricciones][columnaPivote] >= 0){
-                        continuar = false;
-                        break;
+                            continuar = false;
+                            break;
                         }
                         menorCociente=Double.MAX_VALUE;
                         for (f=0;f<restricciones;f ++){
@@ -153,16 +150,15 @@ class MetodoSimplex{
                     }
                     System.out.println("\nResultados finales: ");
                     for(int i = 0; i < n; i++){
-                         System.out.println("X" + (i + 1) + " = " + tablaSimplex[i][n]);
+                        System.out.println("X" + (i + 1) + " = " + tablaSimplex[i][n]);
                     }
-
                     solucion= tablaSimplex[restricciones][n];
                     System.out.println("Z mínimo = " + solucion);
                 }
-            case 3 ->{
+                case 3 ->{
                 System.out.println("Salir");
-
-            }   
-        }
-    }while (opcion !=3); 
+                }   
+            }
+        }while (opcion !=3);
+    } 
 }
