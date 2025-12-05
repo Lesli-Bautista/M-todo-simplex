@@ -1,10 +1,13 @@
 import java.util.Scanner;
 class MetodoSimplex{
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        byte opcion,n;
+        byte opcion,n, restricciones, f, columnaPivote;
         double [][] tablaSimplex;
-        double[] coef;
+        double[] coeficiente;
 
         do{
             System.out.println("\n \n \t \tMenu");
@@ -15,14 +18,26 @@ class MetodoSimplex{
             opcion = sc.nextByte();
             switch (opcion){
                 case 1-> {
-                    System.out.println("Maximizar");
+                    System.out.println("\nMaximizar");
                     System.out.println("Escribe cuantas variables tiene el problema");
                     n=sc.nextByte();
                     tablaSimplex = new double[6][n+1];
-                    coef = new double[n];
+                    coeficiente = new double[n];
                     for(int i=0;i<n;i++){   
                     System.out.println("Ingresa el coeficiente de X"+(i+1)+":");
-                    coef[i]=sc.nextByte();
+                    coeficiente[i]=sc.nextByte();
+                }
+                System.out.println("\nEscribe el numero de restricciones que tiene el problema");
+                restricciones=sc.nextByte();
+                for (f=0;f<restricciones;f ++){
+                    System.out.println("\nRestriccion" + (f+1));
+                    for (int columna = 0;columna<n;columna ++){
+                        System.out.println("Coeficiente X"+(columna+1)+": ");
+                        tablaSimplex[f][columna]=sc.nextDouble();
+                    }
+                    System.out.println("Escribe el valor de b (<=)");
+                     tablaSimplex[f][n]=sc.nextDouble();
+
                 }
 
                 }
@@ -36,7 +51,7 @@ class MetodoSimplex{
 
                 }
             }
-        }
+        }while (opcion !=3);
 
     }
     
