@@ -55,37 +55,34 @@ class MetodoSimplex{
                             columnaPivote=(byte)columna;
                             }
                         }
-                    }
-
-                    if(tablaSimplex[restricciones][columnaPivote] >= 0){
+                        if(tablaSimplex[restricciones][columnaPivote] >= 0){
                         continuar = false;
                         break;
-                    }
-                    menorCociente=Double.MAX_VALUE;
-                    for (f=0;f<restricciones;f ++){
-                        if (tablaSimplex[f][columnaPivote] > 0) {
-                            cociente = tablaSimplex[f][n] / tablaSimplex[f][columnaPivote];
-                            if(cociente < menorCociente){
-                            menorCociente = cociente;
-                            filaPivote = f;
-                            }    
                         }
-
-                    }
-                    pivote=tablaSimplex [filaPivote][columnaPivote];
-                    for(int i=0; i<=n; i++){
-                        tablaSimplex[filaPivote][i] /= pivote;
-                    }
-
-                    for(f=0;f<=restricciones;f++){
-                        if(f != filaPivote){
-                            numMultiplicar=tablaSimplex[f][columnaPivote];
-                            for(int i=0;i<=n;i++){
-                                tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                        menorCociente=Double.MAX_VALUE;
+                        for (f=0;f<restricciones;f ++){
+                            if (tablaSimplex[f][columnaPivote] > 0) {
+                                cociente = tablaSimplex[f][n] / tablaSimplex[f][columnaPivote];
+                                if(cociente < menorCociente){
+                                    menorCociente = cociente;
+                                    filaPivote = f;
+                                }    
+                            }
+                        }
+                        pivote=tablaSimplex [filaPivote][columnaPivote];
+                        for(int i=0; i<=n; i++){
+                            tablaSimplex[filaPivote][i] /= pivote;
+                        }
+                        for(f=0;f<=restricciones;f++){
+                            if(f != filaPivote){
+                                numMultiplicar=tablaSimplex[f][columnaPivote];
+                                for(int i=0;i<=n;i++){
+                                    tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                                }
                             }
                         }
                     }
-                }
+                }    
                 case 2->{
                     System.out.println("\nMinimizar");
                     System.out.println("Escribe cuantas variables tiene el problema");
@@ -117,39 +114,40 @@ class MetodoSimplex{
                         columnaPivote = 0;
                         for(int col = 1; col < n; col++){
                             if(tablaSimplex[restricciones][col] > tablaSimplex[restricciones][columnaPivote]){
-                            columnaPivote = (byte)col;
-                        }
-                    }
-                    if(tablaSimplex[restricciones][columnaPivote] <= 0){
-                        continuar = false;
-                        break;
-                    }
-                    menorCociente = Double.MAX_VALUE;
-                    filaPivote = -1;
-                    for(f= 0; f < restricciones; f++){
-                        if(tablaSimplex[f][columnaPivote] > 0){
-                            cociente = tablaSimplex[f][n] / tablaSimplex[f][columnaPivote];
-                            if(cociente < menorCociente){
-                                menorCociente = cociente;
-                                filaPivote = f;
+                                columnaPivote = (byte)col;
                             }
-                        }   
-                    }
-                    if(filaPivote == -1){
-                        System.out.println("El problema no tiene solucion acotada (unbounded).");
-                        continuar = false;
-                        break;
-                    }
-                    pivote = tablaSimplex[filaPivote][columnaPivote];
+                        }
+                        if(tablaSimplex[restricciones][columnaPivote] <= 0){
+                            continuar = false;
+                            break;
+                        }
+                        menorCociente = Double.MAX_VALUE;
+                        filaPivote = -1;
+                        for(f= 0; f < restricciones; f++){
+                            if(tablaSimplex[f][columnaPivote] > 0){
+                                cociente = tablaSimplex[f][n] / tablaSimplex[f][columnaPivote];
+                                if(cociente < menorCociente){
+                                    menorCociente = cociente;
+                                    filaPivote = f;
+                                }
+                            }   
+                        }
+                        if(filaPivote == -1){
+                            System.out.println("El problema no tiene solucion acotada (unbounded).");
+                            continuar = false;
+                            break;
+                        }
+                        pivote = tablaSimplex[filaPivote][columnaPivote];
 
-                    for(int i = 0; i <= n; i++){
-                        tablaSimplex[filaPivote][i] /= pivote;
-                    }
-                    for(f = 0; f <= restricciones; f++){
-                        if(f != filaPivote){
-                            numMultiplicar = tablaSimplex[f][columnaPivote];
-                            for(int i = 0; i <= n; i++){
-                                tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                        for(int i = 0; i <= n; i++){
+                            tablaSimplex[filaPivote][i] /= pivote;
+                        }
+                        for(f = 0; f <= restricciones; f++){
+                            if(f != filaPivote){
+                                numMultiplicar = tablaSimplex[f][columnaPivote];
+                                for(int i = 0; i <= n; i++){
+                                    tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                                }
                             }
                         }
                     }
@@ -161,11 +159,10 @@ class MetodoSimplex{
                     solucion= tablaSimplex[restricciones][n];
                     System.out.println("Z mínimo = " + solucion);
                 }
-            }
             case 3 ->{
+                System.out.println("Salir");
 
             }   
-        }while (opcion !=3);
-    }
-    
+        }
+    }while (opcion !=3); 
 }
