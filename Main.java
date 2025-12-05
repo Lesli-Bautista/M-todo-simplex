@@ -79,6 +79,12 @@ class MetodoSimplex{
                             }
                         }
                     }
+                    System.out.println("\nResultados finales: ");
+                for(int i=0;i<n;i++){
+                    System.out.println("X"+(i+1)+" = "+tablaSimplex[i][n]);
+                }
+                solucion=tablaSimplex[restricciones][n];
+                System.out.println("Z = "+ solucion);
                 }    
                 case 2->{
                     System.out.println("\nMinimizar");
