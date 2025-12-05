@@ -5,9 +5,11 @@ class MetodoSimplex{
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        byte opcion,n, restricciones, f, columnaPivote;
+        byte opcion,n, restricciones, f, columnaPivote = 0, filaPivote=0;
+        double menorCociente, cociente, pivote,numMultiplicar;
         double [][] tablaSimplex;
         double[] coeficiente;
+        boolean continuar= true;
 
         do{
             System.out.println("\n \n \t \tMenu");
@@ -36,10 +38,48 @@ class MetodoSimplex{
                         tablaSimplex[f][columna]=sc.nextDouble();
                     }
                     System.out.println("Escribe el valor de b (<=)");
-                     tablaSimplex[f][n]=sc.nextDouble();
+                    tablaSimplex[f][n]=sc.nextDouble();
+                }
+                for (int columna=0;columna<n;columna ++){
+                    tablaSimplex [restricciones][columna]=(-1)*coeficiente [columna];
+                }
+                tablaSimplex [restricciones][n]=0;
+                while (continuar){
+                    columnaPivote=0;
+                    for (int columna = 0;columna<n;columna ++){
+                        if (tablaSimplex[restricciones][columna] < tablaSimplex[restricciones][columnaPivote]) {
+                            columnaPivote=(byte)columna;
+                        }
+                    }
+                }
+                if(tablaSimplex[restricciones][columnaPivote] >= 0){
+                    continuar = false;
+                    break;
+                }
+                menorCociente=Double.MAX_VALUE;
+                for (f=0;f<restricciones;f ++){
+                    if (tablaSimplex[f][columnaPivote] > 0) {
+                        cociente = tablaSimplex[f][n] / tablaSimplex[f][columnaPivote];
+                        if(cociente < menorCociente){
+                        menorCociente = cociente;
+                        filaPivote = f;
+                        }    
+                    }
 
                 }
+                pivote=tablaSimplex [filaPivote][columnaPivote];
+                for(int i=0; i<=n; i++){
+                        tablaSimplex[filaPivote][i] /= pivote;
+                }
 
+                for(f=0;f<=restricciones;f++){
+                    if(f != filaPivote){
+                        numMultiplicar=tablaSimplex[f][columnaPivote];
+                        for(int i=0;i<=n;i++){
+                            tablaSimplex[f][i] -= numMultiplicar * tablaSimplex[filaPivote][i];
+                        }
+                    }
+                }
                 }
                 case 2->{
                     System.out.println("Minimizar");
