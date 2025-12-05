@@ -36,7 +36,7 @@ class MetodoSimplex{
                             tablaSimplex[f][columna]=sc.nextDouble();
                         }
 
-                        System.out.println("Escribe el valor de b (<=)");
+                        System.out.println("Escribe el valor de b (≤)");
                         tablaSimplex[f][n]=sc.nextDouble();
                     }
 
@@ -106,7 +106,7 @@ class MetodoSimplex{
                             tablaSimplex[f][columna]=sc.nextDouble();
                         }
 
-                        System.out.println("Escribe el valor de b (<=)");
+                        System.out.println("Escribe el valor de b (≤)");
                         tablaSimplex[f][n]=sc.nextDouble();
                     }
                     for(int columna = 0; columna < n; columna++){
